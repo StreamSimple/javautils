@@ -7,8 +7,7 @@ env:
 phases:
   install:
     commands:
-      - apt-get update -y
-      - apt-get install -y maven
+      - echo Nothing to install
   pre_build:
     commands:
       - echo Nothing to do in the pre_build phase...
