@@ -1,14 +1,14 @@
 package com.simplifi.it.javautil.err;
 
-public class ErrorImpl implements Error
+public class ReturnErrorImpl implements ReturnError
 {
   private String message;
 
-  public ErrorImpl()
+  public ReturnErrorImpl()
   {
   }
 
-  public ErrorImpl(String message)
+  public ReturnErrorImpl(String message)
   {
     if (message == null) {
       throw new IllegalArgumentException();

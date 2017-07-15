@@ -1,6 +1,6 @@
 package com.simplifi.it.javautil.err;
 
-public interface Error
+public interface ReturnError
 {
   String getMessage();
 }
