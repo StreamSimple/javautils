@@ -1,5 +1,11 @@
 package com.simplifi.it.javautil.exception;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
+
 public class ExceptionUtils
 {
   public static class ThrowResult
@@ -50,5 +56,27 @@ public class ExceptionUtils
     }
 
     return new ThrowResult(thrown, nonMatchingException);
+  }
+
+  public static String stackTraceToString(Exception e)
+  {
+    String result = null;
+
+    try {
+      ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+      PrintStream printStream = new PrintStream(byteArrayOutputStream, true, Charset.defaultCharset().name());
+
+      e.printStackTrace(printStream);
+      printStream.flush();
+      byteArrayOutputStream.flush();
+
+      result = new String(byteArrayOutputStream.toByteArray(), Charset.defaultCharset());
+    } catch (UnsupportedEncodingException encodingException) {
+      throw new RuntimeException(encodingException);
+    } catch (IOException ioException) {
+      throw new RuntimeException(ioException);
+    }
+
+    return result;
   }
 }

@@ -45,4 +45,12 @@ public class ExceptionUtilsTest
     Assert.assertTrue(result.isThrown());
     Assert.assertFalse(result.hasNonMatchingException());
   }
+
+  @Test
+  public void printStackTraceTest()
+  {
+    String result = ExceptionUtils.stackTraceToString(new RuntimeException());
+    
+    Assert.assertFalse(result.isEmpty());
+  }
 }
