@@ -50,7 +50,7 @@ public class ExceptionUtilsTest
   public void printStackTraceTest()
   {
     String result = ExceptionUtils.stackTraceToString(new RuntimeException());
-    
+
     Assert.assertFalse(result.isEmpty());
   }
 }
