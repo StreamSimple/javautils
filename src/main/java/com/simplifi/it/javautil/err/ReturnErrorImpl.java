@@ -19,4 +19,12 @@ public class ReturnErrorImpl implements ReturnError
   {
     return message;
   }
+
+  @Override
+  public String toString()
+  {
+    return "ReturnErrorImpl{" +
+        "message='" + message + '\'' +
+        '}';
+  }
 }
