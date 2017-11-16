@@ -17,7 +17,7 @@ public class HostTest
     Assert.assertNull(result.getError());
     Assert.assertEquals(expectedHost, result.getResult());
   }
-  
+
   @Test
   public void errorHostCreateTest()
   {
