@@ -2,6 +2,7 @@ package com.simplifi.it.javautil.net;
 
 import com.simplifi.it.javautil.err.Result;
 import com.simplifi.it.javautil.err.ReturnErrorImpl;
+import java.util.Comparator;
 
 public class Port
 {
@@ -69,5 +70,20 @@ public class Port
     return "Port{" +
         "port=" + port +
         '}';
+  }
+
+  public static class Compare implements Comparator<Port>
+  {
+    public static final Compare INSTANCE = new Compare();
+
+    private Compare()
+    {
+    }
+
+    @Override
+    public int compare(Port portA, Port portB)
+    {
+      return portA.toInt() - portB.toInt();
+    }
   }
 }
