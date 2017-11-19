@@ -35,7 +35,7 @@ public class NaivePortHunter
 
     final List<Port> ports = new ArrayList<>();
 
-    for (int portCounter = 0; portCounter < numPort;) {
+    for (int portCounter = 0; ports.size() < numPort; portCounter++) {
 
       if (start.toInt() + portCounter > Port.MAX_PORT) {
         final String message = String.format("Only found %d ports of %d requested ports",
@@ -47,7 +47,6 @@ public class NaivePortHunter
 
       if (portChecker.isAvailable(port)) {
         ports.add(port);
-        portCounter++;
       }
     }
 
