@@ -67,9 +67,7 @@ public class Port
   @Override
   public String toString()
   {
-    return "Port{" +
-        "port=" + port +
-        '}';
+    return Integer.toString(port);
   }
 
   public static class Compare implements Comparator<Port>
