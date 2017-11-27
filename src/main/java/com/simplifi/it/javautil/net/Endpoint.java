@@ -52,9 +52,6 @@ public class Endpoint
   @Override
   public String toString()
   {
-    return "Endpoint{" +
-        "host=" + host +
-        ", port=" + port +
-        '}';
+    return host + ":" + port;
   }
 }

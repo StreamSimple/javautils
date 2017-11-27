@@ -75,8 +75,6 @@ public class Host
   @Override
   public String toString()
   {
-    return "Host{" +
-        "host='" + host + '\'' +
-        '}';
+    return host;
   }
 }
