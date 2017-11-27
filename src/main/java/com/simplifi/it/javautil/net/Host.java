@@ -7,6 +7,8 @@ import java.net.UnknownHostException;
 
 public class Host
 {
+  public static final Host LOCAL = new Host("localhost");
+
   private final String host;
 
   public Host(final String host)
