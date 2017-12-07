@@ -33,7 +33,7 @@ public class Endpoint
       return false;
     }
 
-    Endpoint endpoint = (Endpoint) o;
+    Endpoint endpoint = (Endpoint)o;
 
     if (!host.equals(endpoint.host)) {
       return false;

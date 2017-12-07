@@ -1,18 +1,20 @@
 package com.streamsimple.javautil.net;
 
+import org.junit.Assert;
+import org.junit.Test;
 import com.streamsimple.javautil.err.Result;
 import com.streamsimple.javautil.exception.ExceptionUtils;
 import com.streamsimple.javautil.exception.Thrower;
-import org.junit.Assert;
-import org.junit.Test;
 
 public class PortTest
 {
   @Test
   public void tooSmallPortTest()
   {
-    ExceptionUtils.ThrowResult result = ExceptionUtils.threw(new Thrower<IllegalArgumentException>() {
-      public void run() throws IllegalArgumentException {
+    ExceptionUtils.ThrowResult result = ExceptionUtils.threw(new Thrower<IllegalArgumentException>()
+    {
+      public void run() throws IllegalArgumentException
+      {
         new Port(Port.MIN_PORT - 1);
       }
     }, IllegalArgumentException.class);
@@ -23,8 +25,10 @@ public class PortTest
   @Test
   public void tooLargePortTest()
   {
-    ExceptionUtils.ThrowResult result = ExceptionUtils.threw(new Thrower<IllegalArgumentException>() {
-      public void run() throws IllegalArgumentException {
+    ExceptionUtils.ThrowResult result = ExceptionUtils.threw(new Thrower<IllegalArgumentException>()
+    {
+      public void run() throws IllegalArgumentException
+      {
         new Port(Port.MAX_PORT + 1);
       }
     }, IllegalArgumentException.class);
@@ -35,16 +39,20 @@ public class PortTest
   @Test
   public void validPortTest()
   {
-    ExceptionUtils.ThrowResult result = ExceptionUtils.threw(new Thrower<IllegalArgumentException>() {
-      public void run() throws IllegalArgumentException {
+    ExceptionUtils.ThrowResult result = ExceptionUtils.threw(new Thrower<IllegalArgumentException>()
+    {
+      public void run() throws IllegalArgumentException
+      {
         new Port(Port.MIN_PORT + 1);
       }
     }, IllegalArgumentException.class);
 
     Assert.assertFalse(result.isThrown());
 
-    result = ExceptionUtils.threw(new Thrower<IllegalArgumentException>() {
-      public void run() throws IllegalArgumentException {
+    result = ExceptionUtils.threw(new Thrower<IllegalArgumentException>()
+    {
+      public void run() throws IllegalArgumentException
+      {
         new Port(Port.MAX_PORT - 1);
       }
     }, IllegalArgumentException.class);

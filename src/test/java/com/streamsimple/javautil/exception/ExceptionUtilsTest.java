@@ -1,17 +1,18 @@
 package com.streamsimple.javautil.exception;
 
+import java.io.IOException;
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.io.IOException;
 
 public class ExceptionUtilsTest
 {
   @Test
   public void throwNonMatchingExceptionTest()
   {
-    ExceptionUtils.ThrowResult result = ExceptionUtils.threw(new Thrower<IOException>() {
-      public void run() throws IOException {
+    ExceptionUtils.ThrowResult result = ExceptionUtils.threw(new Thrower<IOException>()
+    {
+      public void run() throws IOException
+      {
         throw new IllegalArgumentException();
       }
     }, IOException.class);
@@ -24,8 +25,10 @@ public class ExceptionUtilsTest
   @Test
   public void noThrowExceptionTest()
   {
-    ExceptionUtils.ThrowResult result = ExceptionUtils.threw(new Thrower<IOException>() {
-      public void run() throws IOException {
+    ExceptionUtils.ThrowResult result = ExceptionUtils.threw(new Thrower<IOException>()
+    {
+      public void run() throws IOException
+      {
       }
     }, IOException.class);
 
@@ -36,8 +39,10 @@ public class ExceptionUtilsTest
   @Test
   public void throwMatchingExceptionTest()
   {
-    ExceptionUtils.ThrowResult result = ExceptionUtils.threw(new Thrower<IOException>() {
-      public void run() throws IOException {
+    ExceptionUtils.ThrowResult result = ExceptionUtils.threw(new Thrower<IOException>()
+    {
+      public void run() throws IOException
+      {
         throw new IOException();
       }
     }, IOException.class);

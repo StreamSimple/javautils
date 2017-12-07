@@ -37,7 +37,7 @@ public class ReturnErrorImpl implements ReturnError
       return false;
     }
 
-    ReturnErrorImpl that = (ReturnErrorImpl) o;
+    ReturnErrorImpl that = (ReturnErrorImpl)o;
 
     return message.equals(that.message);
   }

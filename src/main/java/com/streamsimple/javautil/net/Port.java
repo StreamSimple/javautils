@@ -1,8 +1,8 @@
 package com.streamsimple.javautil.net;
 
+import java.util.Comparator;
 import com.streamsimple.javautil.err.Result;
 import com.streamsimple.javautil.err.ReturnErrorImpl;
-import java.util.Comparator;
 
 public class Port
 {
@@ -53,7 +53,7 @@ public class Port
       return false;
     }
 
-    Port port1 = (Port) o;
+    Port port1 = (Port)o;
 
     return port == port1.port;
   }

@@ -1,8 +1,8 @@
 package com.streamsimple.javautil.net.hunt;
 
-import com.streamsimple.javautil.net.Port;
 import java.util.ArrayList;
 import java.util.List;
+import com.streamsimple.javautil.net.Port;
 
 /**
  * This port hunter checks if a port is available then adds the port to a list of available ports. <b>Note:</b>

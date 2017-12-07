@@ -1,9 +1,9 @@
 package com.streamsimple.javautil.args;
 
-import com.streamsimple.javautil.exception.ExceptionUtils;
-import com.streamsimple.javautil.exception.Thrower;
 import org.junit.Assert;
 import org.junit.Test;
+import com.streamsimple.javautil.exception.ExceptionUtils;
+import com.streamsimple.javautil.exception.Thrower;
 
 public class PreconditionsTest
 {
@@ -18,8 +18,10 @@ public class PreconditionsTest
   @Test
   public void nullTest()
   {
-    ExceptionUtils.ThrowResult result = ExceptionUtils.threw(new Thrower<NullPointerException>() {
-      public void run() throws NullPointerException {
+    ExceptionUtils.ThrowResult result = ExceptionUtils.threw(new Thrower<NullPointerException>()
+    {
+      public void run() throws NullPointerException
+      {
         Preconditions.checkNotNull(null);
       }
     }, NullPointerException.class);

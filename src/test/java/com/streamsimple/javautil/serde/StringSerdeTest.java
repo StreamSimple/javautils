@@ -1,8 +1,8 @@
 package com.streamsimple.javautil.serde;
 
+import java.nio.charset.StandardCharsets;
 import org.junit.Assert;
 import org.junit.Test;
-import java.nio.charset.StandardCharsets;
 
 public class StringSerdeTest
 {

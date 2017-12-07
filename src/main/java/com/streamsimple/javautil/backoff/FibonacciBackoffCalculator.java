@@ -20,10 +20,10 @@ public class FibonacciBackoffCalculator implements BackoffCalculator
 
     final long result = curr;
     final long sum = prev + curr;
-    final long next = sum == 0? 1: sum;
+    final long next = sum == 0 ? 1 : sum;
 
     prev = curr;
-    curr = next > maxBackoff? maxBackoff: next;
+    curr = next > maxBackoff ? maxBackoff : next;
     return result;
   }
 

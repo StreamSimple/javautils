@@ -1,9 +1,9 @@
 package com.streamsimple.javautil.net;
 
-import com.streamsimple.javautil.err.Result;
-import com.streamsimple.javautil.err.ReturnErrorImpl;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import com.streamsimple.javautil.err.Result;
+import com.streamsimple.javautil.err.ReturnErrorImpl;
 
 public class Host
 {
@@ -63,7 +63,7 @@ public class Host
       return false;
     }
 
-    Host host1 = (Host) o;
+    Host host1 = (Host)o;
 
     return host.equals(host1.host);
   }

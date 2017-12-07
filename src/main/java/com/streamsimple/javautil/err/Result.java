@@ -63,7 +63,7 @@ public class Result<T>
       return false;
     }
 
-    Result<?> result1 = (Result<?>) o;
+    Result<?> result1 = (Result<?>)o;
 
     if (result != null ? !result.equals(result1.result) : result1.result != null) {
       return false;
