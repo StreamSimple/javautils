@@ -34,6 +34,7 @@ public class ReturnErrorImpl implements ReturnError
     this.message = message;
   }
 
+  @Override
   public String getMessage()
   {
     return message;
