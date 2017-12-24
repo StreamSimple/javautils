@@ -22,6 +22,12 @@ import java.util.Comparator;
 
 public class Inet4AddressComparator implements Comparator<Inet4Address>
 {
+  public static final Inet4AddressComparator INSTANCE = new Inet4AddressComparator();
+
+  private Inet4AddressComparator()
+  {
+  }
+
   @Override
   public int compare(Inet4Address addressA, Inet4Address addressB)
   {

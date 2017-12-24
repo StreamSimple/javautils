@@ -28,7 +28,7 @@ public class Inet4AddressComparatorTest
   @Test
   public void testLessThan() throws UnknownHostException
   {
-    final int cmp = new Inet4AddressComparator().compare(
+    final int cmp = Inet4AddressComparator.INSTANCE.compare(
         (Inet4Address)Inet4Address.getByName("192.168.1.3"),
         (Inet4Address)Inet4Address.getByName("192.168.1.4"));
 
@@ -38,7 +38,7 @@ public class Inet4AddressComparatorTest
   @Test
   public void testGreaterThan() throws UnknownHostException
   {
-    final int cmp = new Inet4AddressComparator().compare(
+    final int cmp = Inet4AddressComparator.INSTANCE.compare(
         (Inet4Address)Inet4Address.getByName("193.168.1.3"),
         (Inet4Address)Inet4Address.getByName("192.168.1.4"));
 
@@ -48,7 +48,7 @@ public class Inet4AddressComparatorTest
   @Test
   public void testEquals() throws UnknownHostException
   {
-    final int cmp = new Inet4AddressComparator().compare(
+    final int cmp = Inet4AddressComparator.INSTANCE.compare(
         (Inet4Address)Inet4Address.getByName("192.168.1.3"),
         (Inet4Address)Inet4Address.getByName("192.168.1.3"));
 
