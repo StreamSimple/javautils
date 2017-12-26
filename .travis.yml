@@ -5,6 +5,6 @@ jdk:
 cache:
   directories:
   - "$HOME/.m2"
-install: mvn install --batch-mode -DskipTests=true
+install: mvn install --batch-mode -DskipTests=true -X
 script: mvn install
 
