@@ -5,13 +5,13 @@
   <servers>
     <server>
       <id>StreamSimple-release</id>
-      <username></username>
-      <password></password>
+      <username>aa</username>
+      <password>aa</password>
     </server>
     <server>
       <id>StreamSimple-snapshot</id>
-      <username></username>
-      <password></password>
+      <username>aa</username>
+      <password>aa</password>
     </server>
   </servers>
 </settings>
