@@ -27,9 +27,9 @@
 
   <repositories>
     <repository>
-      <id>${dist.repo.release.id}</id>
-      <name>${dist.repo.release.name}</name>
-      <url>${dist.repo.release.url}</url>
+      <id>StreamSimple-release</id>
+      <name>Release Repository for StreamSimple</name>
+      <url>s3://streamsimple.pub.artifacts/release</url>
       <releases>
         <enabled>true</enabled>
       </releases>
@@ -38,9 +38,9 @@
       </snapshots>
     </repository>
     <repository>
-      <id>${dist.repo.snapshot.id}</id>
-      <name>${dist.repo.snapshot.name}</name>
-      <url>${dist.repo.snapshot.url}</url>
+      <id>StreamSimple-snapshot</id>
+      <name>Snapshot Repository for StreamSimple</name>
+      <url>s3://streamsimple.pub.artifacts/snapshot</url>
       <releases>
         <enabled>false</enabled>
       </releases>
@@ -51,13 +51,6 @@
   </repositories>
 
   <build>
-    <extensions>
-      <extension>
-        <groupId>org.kuali.maven.wagons</groupId>
-        <artifactId>maven-s3-wagon</artifactId>
-        <version>${dist.s3.wagon.version}</version>
-      </extension>
-    </extensions>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
