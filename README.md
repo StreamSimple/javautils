@@ -1,4 +1,4 @@
 ## Simple Java Utilities Project
 
-[![Build Status](https://jenkins.simplifi.it/buildStatus/icon?job=javautils)](https://jenkins.simplifi.it/job/javautils/)
+[![Build Status](https://travis-ci.org/StreamSimple/javautils.svg?branch=master)](https://travis-ci.org/StreamSimple/javautils)
 
