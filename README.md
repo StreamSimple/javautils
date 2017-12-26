@@ -1,6 +1,4 @@
-# Simple Java Utilities Project
-
-**Build Status:** [![Build Status](https://travis-ci.org/StreamSimple/javautils.svg?branch=master)](https://travis-ci.org/StreamSimple/javautils)
+# Simple Java Utilities Project [![Build Status](https://travis-ci.org/StreamSimple/javautils.svg?branch=master)](https://travis-ci.org/StreamSimple/javautils)
 
 This project provides simple java utilities.
 
