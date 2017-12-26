@@ -5,13 +5,13 @@
   <servers>
     <server>
       <id>StreamSimple-release</id>
-      <username>aa</username>
-      <password>aa</password>
+      <username>AKIAIM5HCLF5X3PCZ7DQ</username>
+      <password>P0W7Z70LsybupNaxnVV+m27QxJSHmdSvp555RWnQ</password>
     </server>
     <server>
       <id>StreamSimple-snapshot</id>
-      <username>aa</username>
-      <password>aa</password>
+      <username>AKIAIM5HCLF5X3PCZ7DQ</username>
+      <password>P0W7Z70LsybupNaxnVV+m27QxJSHmdSvp555RWnQ</password>
     </server>
   </servers>
 </settings>
