@@ -1,4 +1,4 @@
-before_install: git fetch --unshallow
+before_install: git fetch
 language: java
 jdk:
   - openjdk7
