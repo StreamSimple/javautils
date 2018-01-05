@@ -17,6 +17,8 @@
  */
 package com.streamsimple.javautil.err;
 
+import java.util.List;
+
 public class ReturnErrorImpl implements ReturnError
 {
   private String message;
@@ -43,6 +45,25 @@ public class ReturnErrorImpl implements ReturnError
   public static final ReturnError create(String message, Object... args)
   {
     return new ReturnErrorImpl(String.format(message, args));
+  }
+
+  public static final ReturnError join(ReturnError... errors)
+  {
+    final StringBuilder sb = new StringBuilder();
+    String separator = "";
+
+    for (ReturnError err: errors) {
+      sb.append(separator);
+      sb.append(err.getMessage());
+      separator = "\n";
+    }
+
+    return create("Errors:\n%s", sb.toString());
+  }
+
+  public static final ReturnError join(List<ReturnError> errors)
+  {
+    return join(errors.toArray(new ReturnError[]{}));
   }
 
   @Override
