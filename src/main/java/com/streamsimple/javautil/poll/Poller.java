@@ -80,6 +80,11 @@ public class Poller<T>
     throw new TimeoutException();
   }
 
+  public static <T> Poller<T> create()
+  {
+    return new Poller<>();
+  }
+
   public static class Result<T>
   {
     private boolean done;
