@@ -17,11 +17,11 @@
  */
 package com.streamsimple.javautil.net;
 
-import org.junit.Assert;
-import org.junit.Test;
 import com.streamsimple.javautil.err.Result;
 import com.streamsimple.javautil.exception.ExceptionUtils;
 import com.streamsimple.javautil.exception.Thrower;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class PortTest
 {

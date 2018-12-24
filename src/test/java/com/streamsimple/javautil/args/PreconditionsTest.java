@@ -17,10 +17,10 @@
  */
 package com.streamsimple.javautil.args;
 
-import org.junit.Assert;
-import org.junit.Test;
 import com.streamsimple.javautil.exception.ExceptionUtils;
 import com.streamsimple.javautil.exception.Thrower;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class PreconditionsTest
 {

@@ -17,9 +17,9 @@
  */
 package com.streamsimple.javautil.net;
 
-import java.util.Comparator;
 import com.streamsimple.javautil.err.Result;
 import com.streamsimple.javautil.err.ReturnErrorImpl;
+import java.util.Comparator;
 
 public class Port
 {

@@ -17,9 +17,9 @@
  */
 package com.streamsimple.javautil.net.hunt;
 
+import com.streamsimple.javautil.net.Port;
 import java.io.IOException;
 import java.net.ServerSocket;
-import com.streamsimple.javautil.net.Port;
 
 public class PortCheckerImpl implements PortChecker
 {

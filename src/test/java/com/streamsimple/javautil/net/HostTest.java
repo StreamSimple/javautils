@@ -17,9 +17,9 @@
  */
 package com.streamsimple.javautil.net;
 
+import com.streamsimple.javautil.err.Result;
 import org.junit.Assert;
 import org.junit.Test;
-import com.streamsimple.javautil.err.Result;
 
 public class HostTest
 {

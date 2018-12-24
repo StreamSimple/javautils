@@ -17,17 +17,15 @@
  */
 package com.streamsimple.javautil.files;
 
+import com.streamsimple.javautils.testutils.DirTestWatcher;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
-
-import com.streamsimple.javautils.testutils.DirTestWatcher;
 
 public class FileUtilsTest
 {

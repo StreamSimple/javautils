@@ -17,10 +17,10 @@
  */
 package com.streamsimple.javautil.net;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import com.streamsimple.javautil.err.Result;
 import com.streamsimple.javautil.err.ReturnErrorImpl;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 public class Host
 {

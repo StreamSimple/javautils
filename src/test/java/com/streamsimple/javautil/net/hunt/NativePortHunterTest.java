@@ -17,13 +17,13 @@
  */
 package com.streamsimple.javautil.net.hunt;
 
+import com.streamsimple.javautil.net.Port;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import org.junit.Assert;
 import org.junit.Test;
-import com.streamsimple.javautil.net.Port;
 
 public class NativePortHunterTest
 {

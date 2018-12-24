@@ -17,10 +17,10 @@
  */
 package com.streamsimple.javautil.serde;
 
+import com.streamsimple.javautil.args.Preconditions;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.charset.UnsupportedCharsetException;
-import com.streamsimple.javautil.args.Preconditions;
 
 public class StringDeserializer implements Deserializer<String>
 {
