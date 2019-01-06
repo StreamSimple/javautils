@@ -20,6 +20,55 @@ package com.streamsimple.javautil.serde;
 public class SerdeUtils
 {
   public static int NUM_BYTES_LONG = 8;
+  public static int NUM_BYTES_INT = 4;
+
+  /**
+   * Big endian
+   * @param buffer
+   * @param offset
+   * @return
+   */
+  public static int deserializeInt(byte[] buffer, int offset)
+  {
+    return ((((int)buffer[0 + offset]) & 0xFF) << 24) |
+        ((((int)buffer[1 + offset]) & 0xFF) << 16) |
+        ((((int)buffer[2 + offset]) & 0xFF) << 8) |
+        (((int)buffer[3 + offset]) & 0xFF);
+  }
+
+  /**
+   * Serializes the given integer value in big endian format.
+   * @param val The value to serialize.
+   * @return The serialized integer value.
+   */
+  public static byte[] serializeInt(int val)
+  {
+    byte[] buffer = new byte[NUM_BYTES_INT];
+
+    buffer[0] = (byte)((val >> 24) & 0xFF);
+    buffer[1] = (byte)((val >> 16) & 0xFF);
+    buffer[2] = (byte)((val >> 8) & 0xFF);
+    buffer[3] = (byte)(val & 0xFF);
+
+    return buffer;
+  }
+
+  /**
+   * Little endian
+   * @param val
+   * @return
+   */
+  public static byte[] serializeIntLE(int val)
+  {
+    byte[] buffer = new byte[NUM_BYTES_INT];
+
+    buffer[0] = (byte)(val & 0xFF);
+    buffer[1] = (byte)((val >> 8) & 0xFF);
+    buffer[2] = (byte)((val >> 16) & 0xFF);
+    buffer[3] = (byte)((val >> 24) & 0xFF);
+
+    return buffer;
+  }
 
   /**
    * Serializes the given long value to an array of bytes. BigEndian.
