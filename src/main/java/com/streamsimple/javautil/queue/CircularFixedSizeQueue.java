@@ -17,11 +17,14 @@
  */
 package com.streamsimple.javautil.queue;
 
+import java.util.NoSuchElementException;
+
 public class CircularFixedSizeQueue<E>
 {
   private final E[] array;
   private int start = 0;
   private int end = 0;
+  private boolean empty = true;
 
   public CircularFixedSizeQueue(int maxSize)
   {
@@ -32,6 +35,7 @@ public class CircularFixedSizeQueue<E>
   {
     start = 0;
     end = 0;
+    empty = true;
 
     for (int i = 0; i < array.length; i++) {
       array[i] = null;
@@ -40,16 +44,59 @@ public class CircularFixedSizeQueue<E>
 
   public void offer(E element)
   {
+    int oldEnd = end;
+    array[end] = element;
+    end = circularMod(end + 1, array.length);
+    empty = false;
+
+    if (start == oldEnd) {
+      start = end;
+    }
   }
 
-  public E poll()
+  public E get(int index)
   {
-    return null;
+    if (index >= size()) {
+      throw new IndexOutOfBoundsException();
+    }
+
+    int arrayIndex = circularMod(start + index, array.length);
+    return array[arrayIndex];
+  }
+
+  public E poll() throws NoSuchElementException
+  {
+    if (isEmpty()) {
+      throw new NoSuchElementException();
+    }
+
+    E result = array[start];
+    start = circularMod(start + 1, array.length);
+    empty = start == end;
+    return result;
   }
 
   public E peek()
   {
-    return null;
+    if (isEmpty()) {
+      return null;
+    }
+
+    return array[start];
+  }
+
+  public int size()
+  {
+    if (start < end) {
+      return end - start;
+    } else {
+      return array.length - (start - end);
+    }
+  }
+
+  public boolean isEmpty()
+  {
+    return empty;
   }
 
   public static int circularMod(int val, int mod)
