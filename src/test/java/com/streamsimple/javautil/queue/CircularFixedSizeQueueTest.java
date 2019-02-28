@@ -17,12 +17,108 @@
  */
 package com.streamsimple.javautil.queue;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 public class CircularFixedSizeQueueTest
 {
-  @Test
-  public void a()
+  @Test(expected = IllegalArgumentException.class)
+  public void dontAllowQueuesSmallerThanTwo()
   {
+    new CircularFixedSizeQueue<String>(1);
+  }
+
+  @Test
+  public void offerPollOfferPoll()
+  {
+    final CircularFixedSizeQueue<Integer> queue = new CircularFixedSizeQueue<Integer>(3);
+
+    queue.offer(10);
+    Assert.assertEquals(1, queue.size());
+    Assert.assertEquals(10, (int)queue.peek());
+    checkContent(queue, new int[]{10});
+
+    Assert.assertEquals(10, (int)queue.poll());
+    Assert.assertTrue(queue.isEmpty());
+    Assert.assertEquals(0, queue.size());
+  }
+
+  @Test
+  public void simpleQueueOfferTest()
+  {
+    final CircularFixedSizeQueue<Integer> queue = new CircularFixedSizeQueue<Integer>(3);
+
+    Assert.assertTrue(queue.isEmpty());
+    Assert.assertEquals(0, queue.size());
+
+    queue.offer(1);
+
+    Assert.assertFalse(queue.isEmpty());
+    Assert.assertEquals(1, queue.size());
+    Assert.assertEquals(1, (int)queue.peek());
+    checkContent(queue, new int[]{1});
+
+    queue.offer(2);
+
+    Assert.assertFalse(queue.isEmpty());
+    Assert.assertEquals(2, queue.size());
+    Assert.assertEquals(1, (int)queue.peek());
+    checkContent(queue, new int[]{1, 2});
+
+    queue.offer(3);
+
+    Assert.assertFalse(queue.isEmpty());
+    Assert.assertEquals(3, queue.size());
+    Assert.assertEquals(1, (int)queue.peek());
+    checkContent(queue, new int[]{1, 2, 3});
+
+    queue.offer(4);
+
+    Assert.assertFalse(queue.isEmpty());
+    Assert.assertEquals(3, queue.size());
+    Assert.assertEquals(2, (int)queue.peek());
+    checkContent(queue, new int[]{2, 3, 4});
+
+    queue.offer(5);
+
+    Assert.assertFalse(queue.isEmpty());
+    Assert.assertEquals(3, queue.size());
+    Assert.assertEquals(3, (int)queue.peek());
+    checkContent(queue, new int[]{3, 4, 5});
+
+    queue.offer(6);
+
+    Assert.assertFalse(queue.isEmpty());
+    Assert.assertEquals(3, queue.size());
+    Assert.assertEquals(4, (int)queue.peek());
+    checkContent(queue, new int[]{4, 5, 6});
+
+    queue.offer(7);
+
+    Assert.assertFalse(queue.isEmpty());
+    Assert.assertEquals(3, queue.size());
+    Assert.assertEquals(5, (int)queue.peek());
+    checkContent(queue, new int[]{5, 6, 7});
+
+    Assert.assertEquals(5, (int)queue.poll());
+    Assert.assertFalse(queue.isEmpty());
+    Assert.assertEquals(2, queue.size());
+    checkContent(queue, new int[]{6, 7});
+
+    Assert.assertEquals(6, (int)queue.poll());
+    Assert.assertFalse(queue.isEmpty());
+    Assert.assertEquals(1, queue.size());
+    checkContent(queue, new int[]{7});
+
+    Assert.assertEquals(7, (int)queue.poll());
+    Assert.assertTrue(queue.isEmpty());
+    Assert.assertEquals(0, queue.size());
+  }
+
+  private void checkContent(CircularFixedSizeQueue<Integer> queue, int[] expected)
+  {
+    for (int i = 0; i < expected.length; i++) {
+      Assert.assertEquals(expected[i], (int)queue.get(i));
+    }
   }
 }

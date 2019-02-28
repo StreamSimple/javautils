@@ -17,6 +17,7 @@
  */
 package com.streamsimple.javautil.queue;
 
+import com.streamsimple.guava.common.base.Preconditions;
 import java.util.NoSuchElementException;
 
 public class CircularFixedSizeQueue<E>
@@ -28,6 +29,7 @@ public class CircularFixedSizeQueue<E>
 
   public CircularFixedSizeQueue(int maxSize)
   {
+    Preconditions.checkArgument(maxSize > 1);
     this.array = (E[])new Object[maxSize];
   }
 
@@ -47,11 +49,11 @@ public class CircularFixedSizeQueue<E>
     int oldEnd = end;
     array[end] = element;
     end = circularMod(end + 1, array.length);
-    empty = false;
 
-    if (start == oldEnd) {
+    if (!empty && start == oldEnd) {
       start = end;
     }
+    empty = false;
   }
 
   public E get(int index)
@@ -87,7 +89,9 @@ public class CircularFixedSizeQueue<E>
 
   public int size()
   {
-    if (start < end) {
+    if (empty) {
+      return 0;
+    } else if (start < end) {
       return end - start;
     } else {
       return array.length - (start - end);
