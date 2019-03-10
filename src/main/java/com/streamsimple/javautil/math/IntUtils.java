@@ -477,37 +477,24 @@ public final class IntUtils
     }
   }
 
-  public static void isNotUnsignedPowerOf2Exception(int value)
+  public static void isNotPowerOf2Exception(int value)
   {
-    if (!IntUtils.isUPowerOf2(value)) {
+    if (!IntUtils.isPowerOf2(value)) {
       throw new IllegalArgumentException("The given value " +
           IntUtils.uToString(value) +
           " is not a power of 2");
     }
   }
 
-  public static void isNotUnsignedPowerOf2Exception(int value,
-                                                    String valueName)
+  public static void isNotPowerOf2Exception(int value,
+                                            String valueName)
   {
-    if (!IntUtils.isUPowerOf2(value)) {
+    if (!IntUtils.isPowerOf2(value)) {
       throw new IllegalArgumentException("The given value " +
           valueName + " " +
           IntUtils.uToString(value) +
           " is not a power of 2");
     }
-  }
-
-  public static void isTrivialNonPositivePowerOf2Exception(int value)
-  {
-    isLTException(1, value);
-    isNotUnsignedPowerOf2Exception(value);
-  }
-
-  public static void isTrivialNonPositivePowerOf2Exception(int value,
-                                                           String valueName)
-  {
-    isLTException(1, value, valueName);
-    isNotUnsignedPowerOf2Exception(value, valueName);
   }
 
   /**
@@ -781,9 +768,11 @@ public final class IntUtils
     bytes[++offset] = getByte3B(value);
   }
 
-  public static boolean isUPowerOf2(int value)
+  public static boolean isPowerOf2(int value)
   {
-    return (~value + 1L & value) == value;
+    return (1 <= value) &&
+           (value <= Integer.MAX_VALUE) &&
+           ((~value + 1 & value) == value);
   }
 
   public static boolean isBitSet(int value, int bit)

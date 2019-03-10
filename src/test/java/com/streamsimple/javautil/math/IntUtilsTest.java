@@ -55,4 +55,16 @@ public class IntUtilsTest
 
     IntUtils.isNotInIntervalInclusiveException(0, 2, 3);
   }
+
+  @Test
+  public void isUPowerOf2Test()
+  {
+    for (int i = 0; i < 31; i++) {
+      Assert.assertTrue("At 2^i " + i, IntUtils.isPowerOf2(1 << i));
+      Assert.assertFalse("At 2^i + 5 " + i, IntUtils.isPowerOf2((1 << i) + 5));
+    }
+
+    Assert.assertFalse(IntUtils.isPowerOf2(-1));
+    Assert.assertFalse(IntUtils.isPowerOf2(Integer.MIN_VALUE));
+  }
 }
