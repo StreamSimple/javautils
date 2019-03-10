@@ -17,11 +17,13 @@
  */
 package com.streamsimple.javautil.queue;
 
+import com.streamsimple.guava.common.base.Preconditions;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 /**
  * MinHeap
@@ -40,6 +42,8 @@ public class HeapFastRemove<T>
 
   public boolean offer(T element)
   {
+    Preconditions.checkNotNull(element);
+
     if (objectToIndex.containsKey(element)) {
       return false;
     }
@@ -50,6 +54,46 @@ public class HeapFastRemove<T>
     percolateUp(index, element);
 
     return true;
+  }
+
+  public T peek()
+  {
+    if (isEmpty()) {
+      return null;
+    } else {
+      return heap.get(0);
+    }
+  }
+
+  public T poll()
+  {
+    if (isEmpty()) {
+      return null;
+    } else {
+      return remove(0);
+    }
+  }
+
+  public void remove(T element)
+  {
+    Integer index = objectToIndex.get(element);
+
+    if (index == null) {
+      throw new NoSuchElementException();
+    }
+
+    objectToIndex.remove(element);
+
+    percolateDown(index);
+  }
+
+  private T remove(int index)
+  {
+    T element = heap.get(index);
+    objectToIndex.remove(element);
+
+    percolateDown(index);
+    return element;
   }
 
   private void percolateUp(int index, T element)
@@ -117,6 +161,11 @@ public class HeapFastRemove<T>
     } else {
       return comparator.compare(first, second);
     }
+  }
+
+  public boolean isEmpty()
+  {
+    return size() == 0;
   }
 
   public int size()
