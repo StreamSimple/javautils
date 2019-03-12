@@ -21,7 +21,6 @@ import com.streamsimple.guava.common.base.Preconditions;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
@@ -31,7 +30,7 @@ import java.util.NoSuchElementException;
  */
 public class HeapFastRemove<T>
 {
-  private List<T> heap = new ArrayList<T>();
+  private ArrayList<T> heap = new ArrayList<T>();
   private Map<T, Integer> objectToIndex = new HashMap<>();
   private Comparator<T> comparator;
 
@@ -161,6 +160,11 @@ public class HeapFastRemove<T>
     } else {
       return comparator.compare(first, second);
     }
+  }
+
+  private void removeLast()
+  {
+    heap.remove(heap.size() - 1);
   }
 
   public boolean isEmpty()
