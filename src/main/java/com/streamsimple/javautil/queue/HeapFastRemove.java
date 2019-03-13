@@ -18,7 +18,7 @@
 package com.streamsimple.javautil.queue;
 
 import com.streamsimple.guava.common.base.Preconditions;
-import java.util.ArrayList;
+import com.streamsimple.javautil.list.ResizingArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
@@ -30,7 +30,7 @@ import java.util.NoSuchElementException;
  */
 public class HeapFastRemove<T>
 {
-  private ArrayList<T> heap = new ArrayList<T>();
+  private ResizingArrayList<T> heap = new ResizingArrayList<T>(ResizingArrayList.PowerOfTwoResizePolicy.INSTANCE);
   private Map<T, Integer> objectToIndex = new HashMap<>();
   private Comparator<T> comparator;
 
@@ -82,16 +82,16 @@ public class HeapFastRemove<T>
     }
 
     objectToIndex.remove(element);
-
     percolateDown(index);
+    heap.removeLast();
   }
 
   private T remove(int index)
   {
     T element = heap.get(index);
     objectToIndex.remove(element);
-
     percolateDown(index);
+    heap.removeLast();
     return element;
   }
 
@@ -142,7 +142,15 @@ public class HeapFastRemove<T>
       heap.set(index, next);
       objectToIndex.put(next, index);
 
-      index = nextIndex;
+      if (secondIndex == size() - 1 &&
+          firstIndex == nextIndex) {
+        heap.set(firstIndex, second);
+        objectToIndex.put(second, firstIndex);
+        // We are done
+        return;
+      } else {
+        index = nextIndex;
+      }
     }
   }
 
@@ -160,11 +168,6 @@ public class HeapFastRemove<T>
     } else {
       return comparator.compare(first, second);
     }
-  }
-
-  private void removeLast()
-  {
-    heap.remove(heap.size() - 1);
   }
 
   public boolean isEmpty()
