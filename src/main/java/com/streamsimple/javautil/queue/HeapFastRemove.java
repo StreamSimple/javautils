@@ -26,20 +26,40 @@ import java.util.NoSuchElementException;
 
 /**
  * MinHeap
- * @param <T>
+ * @param <V>
  */
-public class HeapFastRemove<T>
+public class HeapFastRemove<K, V>
 {
-  private ResizingArrayList<T> heap = new ResizingArrayList<T>(ResizingArrayList.PowerOfTwoResizePolicy.INSTANCE);
-  private Map<T, Integer> objectToIndex = new HashMap<>();
-  private Comparator<T> comparator;
+  private ResizingArrayList<V> heap = new ResizingArrayList<V>(ResizingArrayList.PowerOfTwoResizePolicy.INSTANCE);
+  private ResizingArrayList<K> keys = new ResizingArrayList<K>(ResizingArrayList.PowerOfTwoResizePolicy.INSTANCE);
 
-  public HeapFastRemove(Comparator<T> comparator)
+  private Map<K, Integer> objectToIndex = new HashMap<>();
+  private Comparator<V> comparator;
+
+  public HeapFastRemove(Comparator<V> comparator)
   {
     this.comparator = comparator;
   }
 
-  public boolean offer(T element)
+  private void listAdd(K key, V element)
+  {
+    heap.add(element);
+    keys.add(key);
+  }
+
+  private void listRemoveLast()
+  {
+    heap.removeLast();
+    keys.removeLast();
+  }
+
+  private void listSet(int index, K key, V element)
+  {
+    heap.set(index, element);
+    keys.set(index, key);
+  }
+
+  public boolean offer(K key, V element)
   {
     Preconditions.checkNotNull(element);
 
@@ -48,14 +68,14 @@ public class HeapFastRemove<T>
     }
 
     int index = size();
-    heap.add(element);
-    objectToIndex.put(element, index);
-    percolateUp(index, element);
+    listAdd(key, element);
+    objectToIndex.put(key, index);
+    percolateUp(index, element, key);
 
     return true;
   }
 
-  public T peek()
+  public V peek()
   {
     if (isEmpty()) {
       return null;
@@ -64,7 +84,7 @@ public class HeapFastRemove<T>
     }
   }
 
-  public T poll()
+  public V poll()
   {
     if (isEmpty()) {
       return null;
@@ -73,43 +93,45 @@ public class HeapFastRemove<T>
     }
   }
 
-  public void remove(T element)
+  public void remove(K key)
   {
-    Integer index = objectToIndex.get(element);
+    Integer index = objectToIndex.get(key);
 
     if (index == null) {
       throw new NoSuchElementException();
     }
 
-    objectToIndex.remove(element);
+    objectToIndex.remove(key);
     percolateDown(index);
     heap.removeLast();
   }
 
-  private T remove(int index)
+  private V remove(int index)
   {
-    T element = heap.get(index);
-    objectToIndex.remove(element);
+    K key = keys.get(index);
+    V element = heap.get(index);
+    objectToIndex.remove(key);
     percolateDown(index);
-    heap.removeLast();
+    listRemoveLast();
     return element;
   }
 
-  private void percolateUp(int index, T element)
+  private void percolateUp(int index, V element, K key)
   {
     while (index != 0) {
       int parentIndex = parent(index);
-      T parent = heap.get(parentIndex);
+      V parent = heap.get(parentIndex);
+      K parentKey = keys.get(parentIndex);
 
       if (comparator.compare(parent, element) <= 0) {
         return;
       }
 
-      heap.set(index, parent);
-      heap.set(parentIndex, element);
+      listSet(index, parentKey, parent);
+      listSet(parentIndex, key, element);
 
-      objectToIndex.put(parent, index);
-      objectToIndex.put(element, parentIndex);
+      objectToIndex.put(parentKey, index);
+      objectToIndex.put(key, parentIndex);
 
       index = parentIndex;
     }
@@ -121,31 +143,37 @@ public class HeapFastRemove<T>
       final int firstIndex = firstChild(index);
       final int secondIndex = secondChild(index);
 
-      final T first = nullGet(firstIndex);
-      final T second = nullGet(secondIndex);
+      final V first = nullGetElement(firstIndex);
+      final V second = nullGetElement(secondIndex);
+
+      final K firstKey = nullGetKey(firstIndex);
+      final K secondKey = nullGetKey(secondIndex);
 
       final int nextIndex;
-      final T next;
+      final V next;
+      final K nextKey;
 
       if (nullCompare(first, second) <= 0) {
         nextIndex = firstIndex;
         next = first;
+        nextKey = firstKey;
       } else {
         nextIndex = secondIndex;
         next = second;
+        nextKey = secondKey;
       }
 
       if (next == null) {
         return;
       }
 
-      heap.set(index, next);
-      objectToIndex.put(next, index);
+      listSet(index, nextKey, next);
+      objectToIndex.put(nextKey, index);
 
       if (secondIndex == size() - 1 &&
           firstIndex == nextIndex) {
-        heap.set(firstIndex, second);
-        objectToIndex.put(second, firstIndex);
+        listSet(firstIndex, secondKey, second);
+        objectToIndex.put(secondKey, firstIndex);
         // We are done
         return;
       } else {
@@ -154,12 +182,17 @@ public class HeapFastRemove<T>
     }
   }
 
-  private T nullGet(int index)
+  private V nullGetElement(int index)
   {
     return index < size() ? heap.get(index) : null;
   }
 
-  private int nullCompare(T first, T second)
+  private K nullGetKey(int index)
+  {
+    return index < size() ? keys.get(index) : null;
+  }
+
+  private int nullCompare(V first, V second)
   {
     if (first == null) {
       return 0;

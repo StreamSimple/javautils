@@ -26,7 +26,7 @@ public class HeapFastRemoveTest
   @Test
   public void pollEmptyTest()
   {
-    final HeapFastRemove<Integer> heap = new HeapFastRemove<>(new IntComparator());
+    final HeapFastRemove<String, Integer> heap = new HeapFastRemove<>(new IntComparator());
 
     Assert.assertNull(heap.poll());
   }
@@ -34,7 +34,7 @@ public class HeapFastRemoveTest
   @Test
   public void peekEmptyTest()
   {
-    final HeapFastRemove<Integer> heap = new HeapFastRemove<>(new IntComparator());
+    final HeapFastRemove<String, Integer> heap = new HeapFastRemove<>(new IntComparator());
 
     Assert.assertNull(heap.peek());
   }
@@ -42,17 +42,17 @@ public class HeapFastRemoveTest
   @Test
   public void simpleHeapTest()
   {
-    final HeapFastRemove<Integer> heap = new HeapFastRemove<>(new IntComparator());
+    final HeapFastRemove<String, Integer> heap = new HeapFastRemove<>(new IntComparator());
 
     Assert.assertTrue(heap.isEmpty());
 
-    heap.offer(10);
+    heap.offer("a", 10);
     Assert.assertEquals(1, heap.size());
-    heap.offer(7);
+    heap.offer("b", 7);
     Assert.assertEquals(2, heap.size());
-    heap.offer(3);
+    heap.offer("c", 3);
     Assert.assertEquals(3, heap.size());
-    heap.offer(5);
+    heap.offer("d", 5);
     Assert.assertEquals(4, heap.size());
 
     Assert.assertFalse(heap.isEmpty());
