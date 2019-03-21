@@ -18,6 +18,7 @@
 package com.streamsimple.javautil.queue;
 
 import com.streamsimple.javautil.cmp.IntComparator;
+import com.streamsimple.javautil.lang.KeyValue;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -66,5 +67,21 @@ public class HeapFastRemoveTest
     Assert.assertEquals(10, (int)heap.poll());
     Assert.assertEquals(0, heap.size());
     Assert.assertTrue(heap.isEmpty());
+  }
+
+  @Test
+  public void pollWithKeyTest()
+  {
+    final HeapFastRemove<String, Integer> heap = new HeapFastRemove<>(new IntComparator());
+
+    heap.offer("a", 10);
+    heap.offer("b", 7);
+    heap.offer("c", 3);
+    heap.offer("d", 5);
+
+    Assert.assertEquals(new KeyValue<>("c", 3), heap.pollWithKey());
+    Assert.assertEquals(new KeyValue<>("d", 5), heap.pollWithKey());
+    Assert.assertEquals(new KeyValue<>("b", 7), heap.pollWithKey());
+    Assert.assertEquals(new KeyValue<>("a", 10), heap.pollWithKey());
   }
 }

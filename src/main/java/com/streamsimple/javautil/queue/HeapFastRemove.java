@@ -18,6 +18,7 @@
 package com.streamsimple.javautil.queue;
 
 import com.streamsimple.guava.common.base.Preconditions;
+import com.streamsimple.javautil.lang.KeyValue;
 import com.streamsimple.javautil.list.ResizingArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -90,6 +91,18 @@ public class HeapFastRemove<K, V>
       return null;
     } else {
       return remove(0);
+    }
+  }
+
+  public KeyValue<K, V> pollWithKey()
+  {
+    if (isEmpty()) {
+      return null;
+    } else {
+      K key = keys.get(0);
+      V val = remove(0);
+
+      return new KeyValue<>(key, val);
     }
   }
 
