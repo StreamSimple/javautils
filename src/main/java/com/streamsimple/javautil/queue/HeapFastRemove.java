@@ -23,7 +23,6 @@ import com.streamsimple.javautil.list.ResizingArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.NoSuchElementException;
 
 /**
  * MinHeap
@@ -106,17 +105,18 @@ public class HeapFastRemove<K, V>
     }
   }
 
-  public void remove(K key)
+  public boolean remove(K key)
   {
     Integer index = objectToIndex.get(key);
 
     if (index == null) {
-      throw new NoSuchElementException();
+      return false;
     }
 
     objectToIndex.remove(key);
     percolateDown(index);
     heap.removeLast();
+    return true;
   }
 
   private V remove(int index)
