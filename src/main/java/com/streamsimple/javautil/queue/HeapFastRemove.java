@@ -117,18 +117,19 @@ public class HeapFastRemove<K, V>
     }
   }
 
-  public boolean remove(K key)
+  public V remove(K key)
   {
     Integer index = objectToIndex.get(key);
 
     if (index == null) {
-      return false;
+      return null;
     }
 
+    V val = heap.get(index);
     objectToIndex.remove(key);
     percolateDown(index);
     heap.removeLast();
-    return true;
+    return val;
   }
 
   private V remove(int index)
