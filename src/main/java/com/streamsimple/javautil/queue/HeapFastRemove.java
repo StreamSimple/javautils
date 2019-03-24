@@ -84,6 +84,18 @@ public class HeapFastRemove<K, V>
     }
   }
 
+  public KeyValue<K, V> peekWithKey()
+  {
+    if (isEmpty()) {
+      return null;
+    } else {
+      K key = keys.get(0);
+      V val = heap.get(0);
+
+      return new KeyValue<>(key, val);
+    }
+  }
+
   public V poll()
   {
     if (isEmpty()) {
