@@ -59,4 +59,13 @@ public class KeyValue<K, V>
   {
     return Objects.hash(key, val);
   }
+
+  @Override
+  public String toString()
+  {
+    return "KeyValue{" +
+        "key=" + key +
+        ", val=" + val +
+        '}';
+  }
 }

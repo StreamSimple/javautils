@@ -84,4 +84,42 @@ public class HeapFastRemoveTest
     Assert.assertEquals(new KeyValue<>("b", 7), heap.pollWithKey());
     Assert.assertEquals(new KeyValue<>("a", 10), heap.pollWithKey());
   }
+
+  @Test
+  public void removeTest()
+  {
+    final HeapFastRemove<String, Integer> heap = new HeapFastRemove<>(new IntComparator());
+
+    heap.offer("a", 10);
+    heap.offer("b", 7);
+    heap.offer("c", 3);
+    heap.offer("d", 5);
+
+    heap.remove("b");
+
+    Assert.assertEquals(3, heap.size());
+
+    Assert.assertEquals(new KeyValue<>("c", 3), heap.pollWithKey());
+    Assert.assertEquals(new KeyValue<>("d", 5), heap.pollWithKey());
+    Assert.assertEquals(new KeyValue<>("a", 10), heap.pollWithKey());
+  }
+
+  @Test
+  public void upsertTest()
+  {
+    final HeapFastRemove<String, Integer> heap = new HeapFastRemove<>(new IntComparator());
+
+    heap.upsert("a", 10);
+    heap.upsert("b", 7);
+    heap.upsert("c", 3);
+    heap.upsert("d", 5);
+    heap.upsert("d", 9);
+
+    Assert.assertEquals(4, heap.size());
+
+    Assert.assertEquals(new KeyValue<>("c", 3), heap.pollWithKey());
+    Assert.assertEquals(new KeyValue<>("b", 7), heap.pollWithKey());
+    Assert.assertEquals(new KeyValue<>("d", 9), heap.pollWithKey());
+    Assert.assertEquals(new KeyValue<>("a", 10), heap.pollWithKey());
+  }
 }

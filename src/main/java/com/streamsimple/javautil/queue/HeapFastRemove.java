@@ -61,18 +61,35 @@ public class HeapFastRemove<K, V>
 
   public boolean offer(K key, V element)
   {
+    Preconditions.checkNotNull(key);
     Preconditions.checkNotNull(element);
 
     if (objectToIndex.containsKey(element)) {
       return false;
     }
 
+    offerHelper(key, element);
+    return true;
+  }
+
+  private void offerHelper(K key, V element)
+  {
     int index = size();
     listAdd(key, element);
     objectToIndex.put(key, index);
     percolateUp(index, element, key);
+  }
 
-    return true;
+  public void upsert(K key, V element)
+  {
+    Preconditions.checkNotNull(key);
+    Preconditions.checkNotNull(element);
+
+    if (objectToIndex.containsKey(key)) {
+      remove(key);
+    }
+
+    offerHelper(key, element);
   }
 
   public V peek()
@@ -128,7 +145,7 @@ public class HeapFastRemove<K, V>
     V val = heap.get(index);
     objectToIndex.remove(key);
     percolateDown(index);
-    heap.removeLast();
+    listRemoveLast();
     return val;
   }
 
