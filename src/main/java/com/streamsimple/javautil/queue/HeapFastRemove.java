@@ -134,6 +134,17 @@ public class HeapFastRemove<K, V>
     }
   }
 
+  public V get(K key)
+  {
+    Integer index = objectToIndex.get(key);
+
+    if (index == null) {
+      return null;
+    }
+
+    return heap.get(index);
+  }
+
   public V remove(K key)
   {
     Integer index = objectToIndex.get(key);

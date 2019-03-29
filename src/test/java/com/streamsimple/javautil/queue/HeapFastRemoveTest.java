@@ -122,4 +122,30 @@ public class HeapFastRemoveTest
     Assert.assertEquals(new KeyValue<>("d", 9), heap.pollWithKey());
     Assert.assertEquals(new KeyValue<>("a", 10), heap.pollWithKey());
   }
+
+  @Test
+  public void getAbsentTest()
+  {
+    final HeapFastRemove<String, Integer> heap = new HeapFastRemove<>(new IntComparator());
+
+    heap.upsert("a", 10);
+    heap.upsert("b", 7);
+    heap.upsert("c", 3);
+    heap.upsert("d", 5);
+
+    Assert.assertNull(heap.get("e"));
+  }
+
+  @Test
+  public void getPresentTest()
+  {
+    final HeapFastRemove<String, Integer> heap = new HeapFastRemove<>(new IntComparator());
+
+    heap.upsert("a", 10);
+    heap.upsert("b", 7);
+    heap.upsert("c", 3);
+    heap.upsert("d", 5);
+
+    Assert.assertEquals(10, (int)heap.get("a"));
+  }
 }
