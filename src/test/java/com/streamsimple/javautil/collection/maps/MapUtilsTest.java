@@ -15,10 +15,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.streamsimple.javautil.collection;
+package com.streamsimple.javautil.collection.maps;
 
-import com.streamsimple.javautil.collection.maps.MapBuilder;
-import com.streamsimple.javautil.collection.maps.MapUtils;
 import java.util.HashMap;
 import org.junit.Assert;
 import org.junit.Test;
