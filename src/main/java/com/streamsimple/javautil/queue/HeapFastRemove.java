@@ -18,8 +18,8 @@
 package com.streamsimple.javautil.queue;
 
 import com.streamsimple.guava.common.base.Preconditions;
+import com.streamsimple.javautil.collection.lists.ResizingArrayList;
 import com.streamsimple.javautil.lang.KeyValue;
-import com.streamsimple.javautil.list.ResizingArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
